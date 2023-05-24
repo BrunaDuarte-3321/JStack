@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+.vscode/
+.idea/
+dist/
+build/
+coverage/
+.cache/
+Arquivos de configuração e credenciais:
+
+
+
+
+
+
