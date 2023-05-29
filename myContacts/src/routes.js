@@ -1,7 +1,6 @@
 const { Router } = require('express');
 
 const router = Router();
-
 const ContactController = require('./app/controllers/ContactController');
 
 router.get(

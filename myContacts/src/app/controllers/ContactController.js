@@ -5,7 +5,9 @@ class ContactController {
   async index(request, response) {
     // Listar todos os serviços
 
-    const contacts = await ContactsRepository.findAll();
+    const { orderBy } = request.query;
+
+    const contacts = await ContactsRepository.findAll(orderBy);
 
     response.json(contacts);
   }
@@ -54,9 +56,9 @@ class ContactController {
       name, email, phone, category_id,
     } = request.body;
 
-    const contextExists = await ContactRepository.findById(id);
+    const contactExists = await ContactRepository.findById(id);
 
-    if (!contextExists) {
+    if (!contactExists) {
       return response.status(400).json({ error: 'Users not found' });
     }
 
@@ -81,11 +83,6 @@ class ContactController {
     // Deletar um registro
     const { id } = request.params;
 
-    const contact = await ContactsRepository.findById(id);
-
-    if (!contact) {
-      return response.send(404).json({ error: 'Contatc not found' });
-    }
     await ContactsRepository.delete(id);
     response.sendStatus(204);
   }
